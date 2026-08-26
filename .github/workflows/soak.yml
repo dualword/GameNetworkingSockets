@@ -27,7 +27,7 @@ jobs:
             echo "should_run=true" >> "$GITHUB_OUTPUT"
             exit 0
           fi
-          LAST_SHA=$(gh api "repos/${{ github.repository }}/actions/workflows/soak.yml/runs" \
+          LAST_SHA=$(gh api --method GET "repos/${{ github.repository }}/actions/workflows/soak.yml/runs" \
             -f status=success -f branch="${{ github.ref_name }}" --jq '.workflow_runs[0].head_sha')
           echo "Last successful run: $LAST_SHA"
           echo "Current HEAD:        ${{ github.sha }}"
