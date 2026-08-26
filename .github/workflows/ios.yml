@@ -1,8 +1,8 @@
 name: iOS
 
-# Manual only for now, while this is still being bootstrapped -- flip to
-# [push, pull_request] once it's reliably green.
 on:
+  push:
+  pull_request:
   workflow_dispatch:
     inputs:
       debug_enabled:
@@ -33,8 +33,10 @@ jobs:
     - name: Run iOS simulator smoke test
       run: ./cmake/apple/run-ios-smoke-test.sh
 
-    - name: Debug session (tmate)
-      if: failure() || inputs.debug_enabled
-      uses: mxschmitt/action-tmate@v3
-      with:
-        limit-access-to-actor: true
+    # Disabled for now -- mxschmitt/action-tmate has been hanging indefinitely
+    # on GitHub-hosted macOS runners instead of printing the SSH connect string.
+    #- name: Debug session (tmate)
+    #  if: failure() || inputs.debug_enabled
+    #  uses: mxschmitt/action-tmate@v3
+    #  with:
+    #    limit-access-to-actor: true
