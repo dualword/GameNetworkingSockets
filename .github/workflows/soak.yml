@@ -11,7 +11,7 @@ jobs:
       IMAGE: ubuntu
       IMAGE_TAG: noble
     steps:
-      - uses: actions/checkout@main
+      - uses: actions/checkout@v4
       - name: Update packages
         run: sudo -E bash .github/update-packages.sh
       - name: Install dependencies
@@ -43,7 +43,7 @@ jobs:
       VCPKG_DEFAULT_BINARY_CACHE: ${{ github.workspace }}/vcpkg-bincache
       VCPKG_BINARY_SOURCES: clear;files,${{ github.workspace }}/vcpkg-bincache,readwrite
     steps:
-      - uses: actions/checkout@main
+      - uses: actions/checkout@v4
 
       - name: Configure Git
         run: git config --global --add safe.directory '*'
